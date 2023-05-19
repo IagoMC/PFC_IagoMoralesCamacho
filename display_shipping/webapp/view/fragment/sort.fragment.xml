@@ -1,0 +1,13 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    >
+       
+        <ViewSettingsDialog id="display_dialog" cancel="handleCancel" confirm="handleConfirm">
+            <sortItems>
+                <ViewSettingsItem text="{i18n>FechaSalida}" key="FechaSalida"  selected="true"/>
+                <ViewSettingsItem text="{i18n>FechaLlegada}" key="FechaLlegada" />
+              
+            </sortItems>
+        </ViewSettingsDialog> 
+</core:FragmentDefinition>

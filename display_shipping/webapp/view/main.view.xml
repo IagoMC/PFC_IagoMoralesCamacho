@@ -1,0 +1,129 @@
+<mvc:View controllerName="displayshipping.controller.main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:ndc="sap.ndc"
+
+    >
+    <Page id="page" title="{i18n>title}">
+ <content>
+
+            <!-- Botones para ver envíos no entregados y entregados -->
+            <ToggleButton id="shipmentsNotDeliveredButton" enabled="true" pressed="true" text="{i18n>Ver_envios_no_entregados}" press="onViewShipmentsNotDelivered" />
+            <ToggleButton id="shipmentsDeliveredButton" enabled="false" text="{i18n>Ver_envios_entregados}" press="onViewDeliveredShipmentsPress" />
+
+
+            <!-- Tabla para mostrar los envíos -->
+            <Table id="shipping_table"
+                items="{
+                    path: '/Envios',
+                filters: [
+                    new sap.ui.model.Filter('idEnvio', sap.ui.model.FilterOperator.EQ, '${id}')
+                ]                
+        }">
+
+                <!-- Barra de herramientas con un campo de búsqueda -->
+
+				<headerToolbar>
+					<OverflowToolbar>
+						<content>
+							<ToolbarSpacer/>
+                                 <SearchField
+                                    id="searchField"
+                                    width="20%"
+                                    placeholder="{i18n>searchFieldPlaceholder}"
+                                    search=".onSearch"/>
+
+                                <Button id="sort" press="open_dialogue"  tooltip="Sort"	icon="sap-icon://sort"/>
+                               
+                                <Button 	icon="sap-icon://refresh" pess="onRefresh" />
+
+						</content>
+					</OverflowToolbar>
+				</headerToolbar>
+
+                <!-- Columnas de la tabla -->
+                <columns >
+                    <!-- Definición de cada columna con un texto asociado -->
+                    <Column minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline">
+                        <Text text="{i18n>id}" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                        <Text text="{i18n>FechaSalida}" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                        <Text text="{i18n>FechaLlegada}" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                        <Text text="{i18n>Origen}" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                        <Text text="{i18n>Destino}" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                        <Text text="{i18n>idConductor}" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                        <Text text="{i18n>Matricula}" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                        <Text text="{i18n>Entregado}" />
+                    </Column>
+                </columns>
+
+                <!-- Elementos de la tabla -->
+                <items>
+                    <ColumnListItem type="Navigation" press="onPress">
+                        <!-- Celdas de cada elemento de la tabla con un texto asociado -->
+                        <cells>
+                            <Text text="{id}" />
+                        </cells>
+                        <cells>
+                            <Text text="{FechaSalida}" />
+                        </cells>
+                        <cells>
+                            <Text text="{FechaLlegada}" />
+                        </cells>
+                        <cells>
+                            <Text text="{Origen}" />
+                        </cells>
+                        <cells>
+                            <Text text="{Destino}" />
+                        </cells>
+                        <cells>
+                            <Text text="{idConductor}" />
+                        </cells>
+                        <cells>
+                            <Text text="{Matricula}" />
+                        </cells>
+                        <cells>
+                            <Text text="{Entregado}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+            <!-- Botón para abrir un diálogo -->
+
+
+        </content>
+        <footer>
+        <Bar>
+            <contentRight>
+        	<ndc:BarcodeScannerButton
+			    id="sampleBarcodeScannerButton"
+			    scanSuccess="onScanSuccess"
+			    scanFail="onScanError"
+			    inputLiveUpdate="onScanLiveupdate"
+			    dialogTitle="Barcode Scanner Button Sample"
+		    />
+            <Button text="{i18n>AbrirDialogo}" press="onOpenDialogPress" />
+            </contentRight>
+        </Bar>
+        </footer>
+        <Dialog id="insertDialog" title="Insertar ID de envío" afterClose="onInsertDialogClose">
+            <Input id="inputId" placeholder="{i18n>ID_envIo}" />
+            <Button text="{i18n>Aceptar}" press="onInsertDialogConfirm" />
+            <Button text="{i18n>Cancelar}" press="onInsertDialogCancel" />
+        </Dialog>
+    </Page>
+</mvc:View>

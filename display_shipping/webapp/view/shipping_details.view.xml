@@ -1,0 +1,159 @@
+<mvc:View controllerName="displayshipping.controller.shipping_details"
+   xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+     xmlns:t="sap.ui.table">
+<Page
+
+        showNavButton="true"
+        navButtonPress="onNavBack">
+ <content>
+<f:Form editable="true">
+            <f:layout>
+                <f:ResponsiveGridLayout
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="4"
+                    emptySpanL="4"
+                    emptySpanM="4"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="2"
+                    columnsM="1"
+                    singleContainerFullSize="false" />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="{i18n>id}">
+                            <f:fields>
+                                <Text text="{id}" />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>FechaSalida}">
+                            <f:fields>
+                                <Text text="{FechaSalida}" />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>FechaLlegada}">
+                            <f:fields>
+                                <Text text="{FechaLlegada}" />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>Origen}">
+                            <f:fields>
+                                <Text text="{Origen}" />
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+                
+                <f:FormContainer>
+                        <f:FormElement label="{i18n>Destino}">
+                            <f:fields>
+                                <Text text="{Destino}" />
+                            </f:fields>
+                        </f:FormElement>
+
+                    <f:formElements>
+                        <f:FormElement label="{i18n>idConductor}">
+                            <f:fields>
+                                <Text text="{idConductor}" />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>Matricula}">
+                            <f:fields>
+                                <Text text="{Matricula}" />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>Entregado}">
+                            <f:fields>
+                                <Text text="{Entregado}" />
+                            </f:fields>
+                        </f:FormElement>
+
+                      
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+
+            </f:Form>   
+
+<Table xmlns="sap.m" id="PaquetesMueblesTable" items="{
+    path: '/PaquetesMuebles',
+    filters: [
+        new sap.ui.model.Filter('idEnvio', sap.ui.model.FilterOperator.EQ, ${/id})
+    ]
+}"/>
+            <columns>
+                <Column minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline">
+                    <Text text="{i18n>idPaquete}" />
+                </Column>
+                <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                    <Text text="{i18n>idMueble}" />
+                </Column>
+                <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                    <Text text="{i18n>NombreMueble}" />
+                </Column>
+                <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                    <Text text="{i18n>Tipo}" />
+                </Column>
+                <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                    <Text text="{i18n>Material}" />
+                </Column>
+                <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                    <Text text="{i18n>Dimensiones}" />
+                </Column>
+                <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                    <Text text="{i18n>Peso}" />
+                </Column>
+                <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                    <Text text="{i18n>Cantidad}" />
+                </Column>
+                <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                    <Text text="{i18n>idEnvio}" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem type="Navigation" press="onPress">
+                    <cells>
+                        <Text text="{id}" />
+                    </cells>
+                    <cells>
+                        <Text text="{idMueble}" />
+                    </cells>
+                    <cells>
+                        <Text text="{Nombre}" />
+                    </cells>
+                    <cells>
+                        <Text text="{Tipo}" />
+                    </cells>
+                    <cells>
+                        <Text text="{Material}" />
+                    </cells>
+                    <cells>
+                        <Text text="{Dimensiones}" />
+                    </cells>
+                    <cells>
+                        <Text text="{Peso}" />
+                    </cells>
+                    <cells>
+                        <Text text="{Cantidad}" />
+                    </cells>
+                    <cells>
+                        <Text text="{idEnvio}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>        
+    </content>
+</Page>
+</mvc:View>
